@@ -25,6 +25,7 @@ class Chain:
     block = Block(index, prev_hash, data)
     block.proof_of_work(self.difficulty)
     self.blocks.append(block)
+    return block
 
   def peek(self):
     return self.blocks[len(self.blocks) - 1]
