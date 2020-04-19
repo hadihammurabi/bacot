@@ -1,2 +1,2 @@
-# bacot
-Blocks And Chains As Tools (blockchain engine)
+# BACOT
+Blocks And Chains As Transcripts (blockchain engine)
