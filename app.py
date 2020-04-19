@@ -1,14 +1,4 @@
 import json
-from lib.chain import Chain
+from src.web import web
 
-c = Chain('koinku', difficulty={ 'char': '1', 'times': 1 })
-c.add({
-  'sender': 'hadi',
-  'receiver': 'hammurabi',
-  'message': 'hello'
-})
-c.add({
-  'sender': 'hammurabi',
-  'receiver': 'hadi',
-  'message': 'hello tooo'
-})
+web.run(debug=True, port=8080)
