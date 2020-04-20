@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"bacot/src/core/chain"
-	"bacot/src/cli"
+	"bacot/src/interface/cli"
 )
 
 func main() {

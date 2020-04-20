@@ -4,7 +4,7 @@ import (
 	"github.com/urfave/cli/v2"
 
 	"bacot/src/core/chain"
-	"bacot/src/web"
+	"bacot/src/interface/web"
 )
 
 func New(blockchain *chain.Chain) *cli.App {
