@@ -11,18 +11,18 @@ type Block struct {
 	Data interface{}
 }
 
-func New(index int, timestamp int, prev_hash string, data interface{}) *Block {
+func New(index int, timestamp int, prevHash string, data interface{}) *Block {
 	meta := &Meta{
-		index: index,
-		timestamp: timestamp,
-		prev_hash: prev_hash,
+		Index: index,
+		Timestamp: timestamp,
+		PrevHash: prevHash,
 	}
 	block := &Block{
 		Meta: meta,
 		Data: data,
 	}
 
-	block.Meta.hash = block.CreateHash(block.Meta.nonce)
+	block.Meta.Hash = block.CreateHash(block.Meta.Nonce)
 
 	return block
 }
@@ -33,7 +33,7 @@ func (b Block) CreateHash(nonce int) string {
 	}
 
 	h := sha256.New()
-	h.Write([]byte(fmt.Sprintf("%d%d%s%d", b.Meta.index, b.Meta.timestamp, b.Meta.prev_hash, nonce)))
+	h.Write([]byte(fmt.Sprintf("%d%d%s%d", b.Meta.Index, b.Meta.Timestamp, b.Meta.PrevHash, nonce)))
 
 	return hex.EncodeToString(h.Sum(nil))
 }
