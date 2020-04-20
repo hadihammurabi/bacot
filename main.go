@@ -1,13 +1,19 @@
 package main
 
 import (
+	"os"
+	"log"
+
 	"bacot/src/core/chain"
-	"bacot/src/web"
+	"bacot/src/cli"
 )
 
 func main() {
 	blockchain := chain.New("bacot", 1)
-
-	app := web.New(blockchain)
-	app.Listen(8080)
+	app := cli.New(blockchain)
+	
+	err := app.Run(os.Args)
+  if err != nil {
+    log.Fatal(err)
+  }
 }

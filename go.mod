@@ -8,5 +8,6 @@ require (
 	github.com/gofiber/logger v0.0.1 // indirect
 	github.com/jinzhu/gorm v1.9.12 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
+	github.com/urfave/cli/v2 v2.2.0
 	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd // indirect
 )

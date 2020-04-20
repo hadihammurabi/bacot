@@ -8,7 +8,7 @@ import (
 	"bacot/src/core/chain"
 )
 
-func New(blockchain *chain.Chain) {
+func New(blockchain *chain.Chain) *fiber.App {
 	chain := chain.New("bacot", 1)
 
 	app := fiber.New()
@@ -24,7 +24,7 @@ func New(blockchain *chain.Chain) {
 		block := chain.Add(data)
 	
     c.JSON(block)
-  })
-
-	app.Listen(8080)
+	})
+	
+	return app
 }
