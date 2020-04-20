@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/gofiber/cors v0.0.1 // indirect
-	github.com/gofiber/fiber v1.8.33 // indirect
+	github.com/gofiber/fiber v1.8.33
 	github.com/gofiber/logger v0.0.1 // indirect
 	github.com/jinzhu/gorm v1.9.12 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
