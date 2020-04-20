@@ -9,8 +9,8 @@ import (
 )
 
 type Block struct {
-	Meta *Meta
-	Data interface{}
+	Meta *Meta				`json:"meta"`
+	Data interface{}	`json:"data"`
 }
 
 func New(index int, prevHash string, data interface{}) *Block {

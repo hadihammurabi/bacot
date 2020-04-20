@@ -5,9 +5,9 @@ import (
 )
 
 type Chain struct {
-	Name string
-	Difficulty int
-	Blocks []*block.Block
+	Name string							`json:"name"`
+	Difficulty int					`json:"difficulty"`
+	Blocks []*block.Block		`json:"blocks"`
 }
 
 func New(name string, difficulty int) *Chain {
