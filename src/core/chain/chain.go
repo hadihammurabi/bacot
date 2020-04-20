@@ -31,7 +31,7 @@ func CreateGenesis() *block.Block {
 func (chain *Chain) Add(data interface{}) *block.Block {
 	length := len(chain.Blocks)
 	prevHash := chain.Blocks[length-1].Meta.Hash
-	newblock := block.New(length-1, prevHash, data)
+	newblock := block.New(length, prevHash, data)
 	newblock.ProofOfWork(chain.Difficulty)
 	chain.Blocks = append(chain.Blocks, newblock)
 	return newblock
