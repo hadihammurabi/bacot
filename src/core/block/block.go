@@ -2,6 +2,8 @@ package block
 
 import (
 	"fmt"
+	"time"
+	"strings"
 	"crypto/sha256"
 	"encoding/hex"
 )
@@ -11,10 +13,10 @@ type Block struct {
 	Data interface{}
 }
 
-func New(index int, timestamp int, prevHash string, data interface{}) *Block {
+func New(index int, prevHash string, data interface{}) *Block {
 	meta := &Meta{
 		Index: index,
-		Timestamp: timestamp,
+		Timestamp: int(time.Now().Unix()),
 		PrevHash: prevHash,
 	}
 	block := &Block{
@@ -22,18 +24,14 @@ func New(index int, timestamp int, prevHash string, data interface{}) *Block {
 		Data: data,
 	}
 
-	block.Meta.Hash = block.CreateHash(block.Meta.Nonce)
+	block.Meta.Hash = block.CreateHash()
 
 	return block
 }
 
-func (b Block) CreateHash(nonce int) string {
-	if nonce < 0 {
-		nonce = 0
-	}
-
+func (b Block) CreateHash() string {
 	h := sha256.New()
-	h.Write([]byte(fmt.Sprintf("%d%d%s%d", b.Meta.Index, b.Meta.Timestamp, b.Meta.PrevHash, nonce)))
+	h.Write([]byte(fmt.Sprintf("%d%d%s%d", b.Meta.Index, b.Meta.Timestamp, b.Meta.PrevHash, b.Meta.Nonce)))
 
 	return hex.EncodeToString(h.Sum(nil))
 }
@@ -43,7 +41,8 @@ func (b *Block) ProofOfWork(difficulty int) {
 		difficulty = 1
 	}
 
-	for {
-		break
+	for b.Meta.Hash[:difficulty] != strings.Repeat("0", difficulty) {
+		b.Meta.Nonce++
+		b.Meta.Hash = b.CreateHash()
 	}
 }
