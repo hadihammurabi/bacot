@@ -1,6 +1,7 @@
 package web
 
 import (
+	"fmt"
 	"encoding/json"
 
 	"github.com/gofiber/fiber"
@@ -8,10 +9,20 @@ import (
 	"bacot/src/core/chain"
 )
 
-func New(blockchain *chain.Chain) *fiber.App {
+var nodes []*Node
+
+func New(blockchain *chain.Chain, port string) {
 	chain := chain.New("bacot", 1)
 
 	app := fiber.New()
+	nodes = append(nodes, &Node{ URL: fmt.Sprintf("http://localhost:%s", port) })
+
+	app.Get("/health-check", func(c *fiber.Ctx) {
+		data := map[string]string{
+			"status": "good",
+		}
+		c.JSON(data)
+	})
 
 	app.Get("/chain", func(c *fiber.Ctx) {
     c.JSON(chain)
@@ -25,6 +36,8 @@ func New(blockchain *chain.Chain) *fiber.App {
 	
     c.JSON(block)
 	})
+
+	nodeRoute(app, nodes)
 	
-	return app
+	app.Listen(port)
 }

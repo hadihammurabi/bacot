@@ -25,7 +25,7 @@ func New(blockchain *chain.Chain) *cli.App {
 					},
 				},
         Action:  func(c *cli.Context) error {
-					startServer(blockchain, c.String("port"))
+					web.New(blockchain, c.String("port"))
 					return nil
         },
       },
@@ -33,9 +33,4 @@ func New(blockchain *chain.Chain) *cli.App {
 	}
 
 	return app
-}
-
-func startServer(blockchain *chain.Chain, port string) {
-	server := web.New(blockchain)
-	server.Listen(port)
 }

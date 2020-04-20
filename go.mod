@@ -3,6 +3,7 @@ module bacot
 go 1.14
 
 require (
+	github.com/go-resty/resty/v2 v2.2.0
 	github.com/gofiber/cors v0.0.1 // indirect
 	github.com/gofiber/fiber v1.8.33
 	github.com/gofiber/logger v0.0.1 // indirect
