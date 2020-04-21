@@ -1,23 +1,23 @@
 package block
 
 import (
-	"fmt"
-	"time"
-	"strings"
 	"crypto/sha256"
 	"encoding/hex"
+	"fmt"
+	"strings"
+	"time"
 )
 
 type Block struct {
-	Meta *Meta		`json:"meta"`
-	Data interface{}	`json:"data"`
+	Meta *Meta       `json:"meta"`
+	Data interface{} `json:"data"`
 }
 
 func New(index int, prevHash string, data interface{}) *Block {
 	meta := &Meta{
-		Index: index,
+		Index:     index,
 		Timestamp: int(time.Now().Unix()),
-		PrevHash: prevHash,
+		PrevHash:  prevHash,
 	}
 	block := &Block{
 		Meta: meta,

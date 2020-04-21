@@ -5,9 +5,9 @@ import (
 )
 
 type Chain struct {
-	Name string		`json:"name"`
-	Difficulty int		`json:"difficulty"`
-	Blocks []*block.Block	`json:"blocks"`
+	Name       string         `json:"name"`
+	Difficulty int            `json:"difficulty"`
+	Blocks     []*block.Block `json:"blocks"`
 }
 
 func New(name string, difficulty int) *Chain {
@@ -15,9 +15,9 @@ func New(name string, difficulty int) *Chain {
 	genesis := CreateGenesis()
 	blocks = append(blocks, genesis)
 	chain := &Chain{
-		Name: name,
+		Name:       name,
 		Difficulty: difficulty,
-		Blocks: blocks,
+		Blocks:     blocks,
 	}
 
 	return chain
@@ -38,14 +38,14 @@ func (chain *Chain) Add(data interface{}) *block.Block {
 }
 
 func (chain *Chain) Peek() *block.Block {
-	return chain.Blocks[len(chain.Blocks) - 1]
+	return chain.Blocks[len(chain.Blocks)-1]
 }
 
 func (chain *Chain) IsValid() bool {
 	for i, currentblock := range chain.Blocks {
 		var before *block.Block
 		if i > 0 {
-			before = chain.Blocks[i - 1]
+			before = chain.Blocks[i-1]
 		}
 
 		if before != nil && currentblock.Meta.PrevHash != before.Meta.Hash {

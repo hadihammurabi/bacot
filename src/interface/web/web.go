@@ -1,8 +1,8 @@
 package web
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 
 	"github.com/gofiber/fiber"
 
@@ -15,7 +15,7 @@ func New(blockchain *chain.Chain, port string) {
 	chain := chain.New("bacot", 1)
 
 	app := fiber.New()
-	nodes = append(nodes, &Node{ URL: fmt.Sprintf("http://localhost:%s", port) })
+	nodes = append(nodes, &Node{URL: fmt.Sprintf("http://localhost:%s", port)})
 
 	app.Get("/health-check", func(c *fiber.Ctx) {
 		data := map[string]string{
@@ -25,19 +25,19 @@ func New(blockchain *chain.Chain, port string) {
 	})
 
 	app.Get("/chain", func(c *fiber.Ctx) {
-    c.JSON(chain)
+		c.JSON(chain)
 	})
-	
+
 	app.Post("/chain", func(c *fiber.Ctx) {
 		data := make(map[string]interface{})
 		json.Unmarshal([]byte(c.Body()), &data)
 
 		block := chain.Add(data)
-	
-    c.JSON(block)
+
+		c.JSON(block)
 	})
 
 	nodeRoute(app, nodes)
-	
+
 	app.Listen(port)
 }

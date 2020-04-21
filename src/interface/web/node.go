@@ -1,16 +1,16 @@
 package web
 
 import (
-	"fmt"
-	"errors"
 	"encoding/json"
+	"errors"
+	"fmt"
 
-	"github.com/gofiber/fiber"
 	"github.com/go-resty/resty/v2"
+	"github.com/gofiber/fiber"
 )
 
 type Node struct {
-	URL string    `json:"url"`
+	URL string `json:"url"`
 }
 
 func nodeRoute(app *fiber.App, nodes []*Node) {
