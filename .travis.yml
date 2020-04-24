@@ -12,6 +12,7 @@ jobs:
       script:
         - echo "test begin"
         - go mod verify
+        - go test
         - echo "test end"
     - stage: release
       script:
