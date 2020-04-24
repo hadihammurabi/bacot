@@ -11,14 +11,11 @@ install:
   - go get github.com/mitchellh/gox
   - go get github.com/tcnksm/ghr
 
-jobs:
-  include:
-    - stage: test
-      script:
-        - echo "test begin"
-        - go mod verify
-        - go test
-        - echo "test end"
+# jobs:
+#   include:
+#     - stage: test
+#       script:
+#         - go test
 
 after_success:
   - sh ./.travis/release.sh
