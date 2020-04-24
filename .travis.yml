@@ -6,6 +6,11 @@ branches:
   only:
   - master
 
+install:
+  - curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o ~/semantic-release && chmod +x ~/semantic-release
+  - go get github.com/mitchellh/gox
+  - go get github.com/tcnksm/ghr
+
 jobs:
   include:
     - stage: test
@@ -14,6 +19,9 @@ jobs:
         - go mod verify
         - go test
         - echo "test end"
-    - stage: release
-      script:
-        - echo "try release"
+
+after_success:
+  - sh ./.travis/release.sh
+
+notifications:
+  email: false
