@@ -2,9 +2,6 @@ language: go
 go:
   - 1.14
 
-install:
-  - go mod download
-
 branches:
   only:
   - master
