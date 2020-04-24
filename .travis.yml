@@ -17,7 +17,7 @@ install:
 #       script:
 #         - go test
 
-after_success:
+script:
   - sh ./.travis/release.sh
 
 notifications:
