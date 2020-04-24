@@ -1,0 +1,21 @@
+language: node_js
+go:
+  - 1.14
+
+install:
+  - go mod download
+
+branches:
+  only:
+  - master
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - echo "test begin"
+        - go mod verify
+        - echo "test end"
+    - stage: release
+      script:
+        - echo "try release"
