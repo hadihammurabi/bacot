@@ -1,6 +1,6 @@
 language: go
 go:
-  - 1.14
+  - 1.13.10
 
 env: GO111MODULE=on GOFLAGS='-mod vendor'
 
